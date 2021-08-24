@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -15,11 +13,23 @@ import javax.persistence.Table;
 @Table(name = "PATIENT")
 public class Patient
 {
-    @Id
+    @Id @GeneratedValue
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "email", unique = true)
     private String email;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "address")
     private String address;
-    private String phoneNumber;
+
+    @Column(name = "phone_number")
+    private String phonenumber;
+
+    @Column(name = "password")
     private String password;
 
     public void setEmail(String email) {
@@ -34,8 +44,8 @@ public class Patient
         this.address = address;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public void setPassword(String password) {
@@ -55,7 +65,7 @@ public class Patient
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phonenumber;
     }
 
     public String getPassword() {
