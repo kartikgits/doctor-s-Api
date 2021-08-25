@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,11 +14,12 @@ import javax.persistence.*;
 @Table(name = "PATIENT")
 public class Patient
 {
-    @Id @GeneratedValue
-    @Column(name = "id")
-    private int id;
+//    @Id @GeneratedValue
+//    @Column(name = "id")
+//    private int id;
 
-    @Column(name = "email", unique = true)
+    @Id
+    @Column(name = "email")
     private String email;
 
     @Column(name = "name")
@@ -31,6 +33,10 @@ public class Patient
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(targetEntity = Appointment.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "patientAppointment_fk", referencedColumnName = "email")
+    private List<Appointment> appointments;
 
     public void setEmail(String email) {
         this.email = email;

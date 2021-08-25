@@ -2,26 +2,26 @@ package com.ankitnegi.doctors_api.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "APPOINTMENT")
 public class Appointment
 {
     @Id
+    @Generated
+    private int id;
+
     private String email;
-    @Id
-    private LocalDate datetime;
+
+    private LocalDateTime datetime;
     private String comments;
-
-
 
 }
