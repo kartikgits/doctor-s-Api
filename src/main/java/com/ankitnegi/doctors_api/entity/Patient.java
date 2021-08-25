@@ -19,8 +19,10 @@ public class Patient
 //    private int id;
 
     @Id
-    @Column(name = "email")
+    @Column(name = "email", length = 200)
     private String email;
+
+
 
     @Column(name = "name")
     private String name;
@@ -33,10 +35,6 @@ public class Patient
 
     @Column(name = "password")
     private String password;
-
-    @OneToMany(targetEntity = Appointment.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "patientAppointment_fk", referencedColumnName = "email")
-    private List<Appointment> appointments;
 
     public void setEmail(String email) {
         this.email = email;

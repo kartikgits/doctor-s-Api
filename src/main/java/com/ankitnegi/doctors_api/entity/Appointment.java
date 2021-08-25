@@ -1,27 +1,31 @@
 package com.ankitnegi.doctors_api.entity;
 
+import com.ankitnegi.doctors_api.keys.AppointmentId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@IdClass(AppointmentId.class)
 @Entity
-public class Appointment
+public class Appointment implements Serializable
 {
     @Id
-    @Generated
-    private int id;
-
+    @Column(length = 200)
     private String email;
 
-    private LocalDateTime datetime;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Patient patient;
+
+    @Id
+    @Temporal(TemporalType.TIMESTAMP)
+    private java.util.Date datetime;
+
     private String comments;
 
 }

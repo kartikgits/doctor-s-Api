@@ -1,6 +1,7 @@
 package com.ankitnegi.doctors_api.service;
 
 import com.ankitnegi.doctors_api.entity.Patient;
+import com.ankitnegi.doctors_api.repository.AppointmentRepository;
 import com.ankitnegi.doctors_api.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,9 @@ import java.util.List;
 public class PatientService {
     @Autowired
     private PatientRepository repository;
+
+    @Autowired
+    private AppointmentRepository appointmentRepository;
 
     //for adding new patients
     public Patient savePatient(Patient patient )
@@ -34,11 +38,9 @@ public class PatientService {
     }
 
     //to delete patient info
-    public String deletePatient(String email)
-    {
-        repository.deleteByEmail(email);
-        return "Patient removed from DB with email: " + email;
-
+    public String deletePatient(String email) {
+        repository.deleteById(email);
+        return "Removed";
     }
 
     //to  get/fetch a list of all the patients
